@@ -1,15 +1,9 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
-  import Hello from "./lib/Hello.svelte";
+  import Nav from "./lib/Nav.svelte";
   import Todo from "./lib/Todo.svelte";
 </script>
 
 <main>
-  <h1>Svelte todo app</h1>
-  <Hello />
-  <Counter />
+  <Nav />
   <Todo />
 </main>
-
-<style>
-</style>
