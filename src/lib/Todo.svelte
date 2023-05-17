@@ -1,28 +1,13 @@
 <script lang="ts">
-  type TodoT = {
-    text: string;
-    completed: boolean;
-  };
+  import { counterStore, addtodo, completetodo } from "../store/todo.model";
 
-  let todos: TodoT[] = [
-    { text: "wash dishes", completed: false },
-    { text: "practice english", completed: true },
-    { text: "watch TV", completed: false },
-  ];
   let todo: string = "";
 
   const submit = (ev: SubmitEvent) => {
     ev.preventDefault();
-    todos.push({
-      text: todo,
-      completed: false,
-    });
-    todos = todos;
+    if (!todo.length) return;
+    addtodo({ text: todo, completed: false });
     todo = "";
-  };
-
-  const complete = (index: number) => {
-    todos[index].completed = !todos[index].completed;
   };
 </script>
 
@@ -33,14 +18,14 @@
       <input class="todo_input" bind:value={todo} type="text" />
     </form>
 
-    {#each todos as item, index}
+    {#each $counterStore as item, index}
       <div class="todo_item">
         <input
           type="checkbox"
           checked={item.completed}
-          on:change={() => complete(index)}
+          on:change={() => completetodo(index)}
         />
-        <div>{item.text} {index}</div>
+        <div>{item.text}</div>
       </div>
     {/each}
   </div>
