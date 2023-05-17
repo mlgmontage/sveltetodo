@@ -1,20 +1,14 @@
 <script lang="ts">
-  let count: number = 1;
-
-  const inc = () => {
-    count += 1;
-  };
-
-  const dec = () => {
-    count -= 1;
-  };
+  import { counterStore, decrement, increment } from "../store/counter.model";
 </script>
 
 <main>
   <div class="counter">
-    <button on:click={inc} class="counter_button">+1</button>
-    <h1 class={`counter_title ${count > 0 ? "hot" : "cold"}`}>{count}</h1>
-    <button on:click={dec} class="counter_button">-1</button>
+    <button on:click={() => increment()} class="counter_button">+1</button>
+    <h1 class={`counter_title ${$counterStore > 0 ? "hot" : "cold"}`}>
+      {$counterStore}
+    </h1>
+    <button on:click={() => decrement()} class="counter_button">-1</button>
   </div>
 </main>
 
