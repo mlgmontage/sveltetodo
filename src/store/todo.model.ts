@@ -15,7 +15,7 @@ let todos: TodoT[] = [
 export const addtodo = createEvent<TodoT>("addtodo");
 export const completetodo = createEvent<number>("completetodo");
 
-export const counterStore = createStore(todos)
+export const todoStore = createStore(todos)
   .on(addtodo, (state, payload) => [...state, payload])
   .on(completetodo, (state, payload) => {
     const list = [...state];

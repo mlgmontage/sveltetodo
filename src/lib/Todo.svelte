@@ -1,14 +1,18 @@
 <script lang="ts">
-  import { counterStore, addtodo, completetodo } from "../store/todo.model";
+  import { todoStore, addtodo, completetodo } from "../store/todo.model";
 
   let todo: string = "";
 
   const submit = (ev: SubmitEvent) => {
     ev.preventDefault();
-    if (!todo.length) return;
+    if (!todo.length && $todoStore.length < 10) return;
     addtodo({ text: todo, completed: false });
     todo = "";
   };
+
+  $: if ($todoStore.length > 10) {
+    alert("Too much to dos!");
+  }
 </script>
 
 <main>
@@ -18,7 +22,7 @@
       <input class="todo_input" bind:value={todo} type="text" />
     </form>
 
-    {#each $counterStore as item, index}
+    {#each $todoStore as item, index}
       <div class="todo_item">
         <input
           type="checkbox"
