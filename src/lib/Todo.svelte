@@ -33,15 +33,17 @@
       >
     </div>
 
-    {#each $todoStore.filter((item) => item.completed === str2bool(filter)) as item, index}
-      <div class="todo_item">
-        <input
-          type="checkbox"
-          checked={item.completed}
-          on:change={() => completetodo(index)}
-        />
-        <div>{item.text}</div>
-      </div>
+    {#each $todoStore as item, index}
+      {#if item.completed === str2bool(filter)}
+        <div class="todo_item">
+          <input
+            type="checkbox"
+            checked={item.completed}
+            on:change={() => completetodo(index)}
+          />
+          <div>{item.text}</div>
+        </div>
+      {/if}
     {/each}
   </div>
 </main>
