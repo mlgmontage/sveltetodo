@@ -3,8 +3,7 @@
 
   let todo: string = "";
 
-  const submit = (ev: SubmitEvent) => {
-    ev.preventDefault();
+  const submit = () => {
     if (!todo.length && $todoStore.length < 10) return;
     addtodo({ text: todo, completed: false });
     todo = "";
@@ -18,7 +17,7 @@
 <main>
   <div class="todo">
     <h1>To do app</h1>
-    <form on:submit={submit}>
+    <form on:submit|preventDefault={submit}>
       <input class="todo_input" bind:value={todo} type="text" />
     </form>
 
