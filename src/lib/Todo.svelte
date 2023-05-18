@@ -12,6 +12,9 @@
   $: if ($todoStore.length > 10) {
     alert("Too much to dos!");
   }
+
+  let filter = "true";
+  const str2bool = (str: string) => (str === "true" ? true : false);
 </script>
 
 <main>
@@ -21,7 +24,16 @@
       <input class="todo_input" bind:value={todo} type="text" />
     </form>
 
-    {#each $todoStore as item, index}
+    <div class="filters">
+      <label>
+        <input type="radio" bind:group={filter} value="true" /> completed</label
+      >
+      <label>
+        <input type="radio" bind:group={filter} value="false" /> uncompleted</label
+      >
+    </div>
+
+    {#each $todoStore.filter((item) => item.completed === str2bool(filter)) as item, index}
       <div class="todo_item">
         <input
           type="checkbox"
@@ -54,5 +66,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  .filters {
+    padding-block: 10px;
+  }
+
+  .filters label {
+    cursor: pointer;
   }
 </style>
