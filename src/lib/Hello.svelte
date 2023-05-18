@@ -1,5 +1,9 @@
+<script>
+  export let name = "Stranger";
+</script>
+
 <main>
-  <h1>Hello world</h1>
+  <h1>Hello, {name}</h1>
 </main>
 
 <style>

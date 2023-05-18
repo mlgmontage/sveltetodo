@@ -1,0 +1,26 @@
+:root {
+  --clr-primary: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Courier New", Courier, monospace;
+}
+
+input,
+button,
+textarea {
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
