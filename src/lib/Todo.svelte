@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { todoStore, addtodo, completetodo } from "../store/todo.model";
 
   let todo: string = "";
+  let quote: string = "";
 
   const submit = () => {
     if (!todo.length && $todoStore.length < 10) return;
@@ -13,6 +15,12 @@
     alert("Too much to dos!");
   }
 
+  onMount(async () => {
+    const res = await fetch("https://api.chucknorris.io/jokes/random");
+    const json = await res.json();
+    quote = json.value;
+  });
+
   let filter = "true";
   const str2bool = (str: string) => (str === "true" ? true : false);
 </script>
@@ -20,6 +28,7 @@
 <main>
   <div class="todo">
     <h1>To do app</h1>
+    <h4>{quote}</h4>
     <form on:submit|preventDefault={submit}>
       <input class="todo_input" bind:value={todo} type="text" />
     </form>
